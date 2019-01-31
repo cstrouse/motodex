@@ -11,7 +11,7 @@ posts = [
         'author': 'BW Block',
         'title': 'Blog Post 1',
         'content': 'First post content',
-        'date_posted': 'April 20, 2018'
+        'date_posted': 'Jan 31, 2019'
     },
     {
         'author': 'Jane Doe',
@@ -60,10 +60,12 @@ def restricted():
     return "You can only see this if you are logged in!", 200
 
 
+@main.route("/post")
+@login_required
+def view_post():
+    return render_template("posts.html", posts=posts)
+
+
 @main.route("/about")
 def about():
     return render_template("about.html")
-
-@main.route("/post")
-def view_post():
-    return render_template("posts.html", posts=posts)
