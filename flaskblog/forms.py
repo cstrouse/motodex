@@ -1,13 +1,13 @@
 from flask_wtf import Form
-from wtforms import StringField, PasswordField
-from wtforms import validators
+from wtforms import StringField, PasswordField, SubmitField
+from wtforms.validators import DataRequired, Length, Email, EqualTo
 
 from flaskblog.models import User
 
 
 class LoginForm(Form):
-    username = StringField(u'Username', validators=[validators.required()])
-    password = PasswordField(u'Password', validators=[validators.optional()])
+    username = StringField(u'Username', validators=[DataRequired()])
+    password = PasswordField(u'Password', validators=[DataRequired()])
 
     def validate(self):
         check_validate = super(LoginForm, self).validate()
@@ -28,3 +28,13 @@ class LoginForm(Form):
             return False
 
         return True
+
+class RegistrationForm(Form):
+    username = StringField('Username',
+                           validators=[DataRequired(), Length(min=2, max=20)])
+    email = StringField('Email',
+                        validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    confirm_password = PasswordField('Confirm Password',
+                                     validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Sign Up')

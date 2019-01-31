@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, flash, request, redirect, url_for
 from flask.ext.login import login_user, logout_user, login_required
 
 from flaskblog.extensions import cache
-from flaskblog.forms import LoginForm
+from flaskblog.forms import LoginForm, RegistrationForm
 from flaskblog.models import User
 
 
@@ -24,18 +24,24 @@ posts = [
 
 main = Blueprint('main', __name__)
 
-
-
 @main.route('/')
 @cache.cached(timeout=1000)
 def home():
     return render_template('index.html')
 
 
+@main.route("/register", methods=['GET', 'POST'])
+def register():
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        flash(f'Account created for {form.username.data}!', 'success')
+        return redirect(url_for('.home'))
+    return render_template('register.html', title='Register', form=form)
+
+
 @main.route("/login", methods=["GET", "POST"])
 def login():
     form = LoginForm()
-
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).one()
         login_user(user)
@@ -55,7 +61,7 @@ def logout():
 
 
 @main.route("/post")
-@login_required
+#     @login_required
 def view_post():
     return render_template("posts.html", posts=posts)
 
