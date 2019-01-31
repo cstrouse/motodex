@@ -54,12 +54,6 @@ def logout():
     return redirect(url_for(".home"))
 
 
-@main.route("/restricted")
-@login_required
-def restricted():
-    return "You can only see this if you are logged in!", 200
-
-
 @main.route("/post")
 @login_required
 def view_post():
