@@ -61,7 +61,7 @@ def logout():
 
 
 @main.route("/post")
-#     @login_required
+@login_required
 def view_post():
     return render_template("posts.html", posts=posts)
 
