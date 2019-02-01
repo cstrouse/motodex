@@ -2,41 +2,54 @@
 
 {%block title %}Flask Login Example{% endblock %}
 
-{%block body %}
-    <h1 class="text-center">Login</h1><br>
-
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-            <form role="form"
-                  action="{{ url_for('.login', next=request.args.get('next')) }}"
-                  method="post"
-                  enctype="multipart/form-data">
-                {{ form.hidden_tag() }}
-
+{% block body %}
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Log In</legend>
                 <div class="form-group">
-                    {{ form.username.label }}
-                    {% if form.username.errors %}
-                        {% for e in form.username.errors %}
-                            <p class="help-block">{{ e }}</p>
-                        {% endfor %}
-                    {% endif %}
-                    {{ form.username(class_="form-control") }}
-                </div>
-                <div class="form-group">
-                    {{ form.password.label }}
+                    {{ form.password.label(class="form-control-label") }}
                     {% if form.password.errors %}
-                        {% for e in form.password.errors %}
-                            <p class="help-block">{{ e }}</p>
-                        {% endfor %}
+                        {{ form.password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="form-control form-control-lg") }}
                     {% endif %}
-                    {{ form.password(class_="form-control") }}
                 </div>
-
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
-        <div class="col-md-4"></div>
+                <div class="form-group">
+                    {{ form.password.label(class="form-control-label") }}
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-check">
+                    {{ form.remember(class="form-check-input") }}
+                    {{ form.remember.label(class="form-check-label") }}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+            <small class="text-muted ml-2">
+                <a href="#">Forgot Password?</a>
+            </small>
+        </form>
     </div>
-
-{%endblock %}
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            Need An Account? <a class="ml-2" href="{{ url_for('.register') }}">Sign Up Now</a>
+        </small>
+    </div>
+{% endblock  %}
