@@ -1,9 +1,10 @@
 from flask import Blueprint, render_template, flash, request, redirect, url_for
 from flask.ext.login import login_user, logout_user, login_required
 
+from flaskblog.models import db
 from flaskblog.extensions import cache
 from flaskblog.forms import LoginForm, RegistrationForm
-from flaskblog.models import User
+from flaskblog.models import User, Post
 
 
 posts = [
@@ -34,8 +35,12 @@ def home():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
+        user = User(username=form.username.data, email=form.email.data)
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
         flash(f'Account created for {form.username.data}!', 'success')
-        return redirect(url_for('.home'))
+        return redirect(url_for('.login'))
     return render_template('register.html', title='Register', form=form)
 
 
