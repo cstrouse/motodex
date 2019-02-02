@@ -92,7 +92,7 @@ def about():
 
 # --------------------------------- Post CRUD -------------------------------------------#
 
-@main.route("/postlist")
+@main.route("/listpost")
 @login_required
 def view_post():
     posts = Post.query.all()
