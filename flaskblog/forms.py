@@ -18,7 +18,7 @@ class LoginForm(Form):
         if not check_validate:
             return False
 
-        # Does our the exist
+        # Does the user exist
         user = User.query.filter_by(username=self.username.data).first()
         if not user:
             self.username.errors.append('Invalid username or password')
@@ -40,7 +40,6 @@ class RegistrationForm(Form):
     confirm_password = PasswordField('Confirm Password',
                                      validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Sign Up')
-
 
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()

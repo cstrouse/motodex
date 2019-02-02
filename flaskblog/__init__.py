@@ -1,8 +1,8 @@
 #! ../env/bin/python
 # -*- coding: utf-8 -*-
 
-__author__ = 'BW Block'
-__email__ = 'bwbl0ck@protonmail.com'
+__author__ = 'bl0ckstar'
+__email__ = 'bl0ckstar@protonmail.com'
 __version__ = '1.3'
 
 from flask import Flask
