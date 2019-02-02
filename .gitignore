@@ -10,6 +10,7 @@ instance/
 .coverage
 htmlcov/
 
+profile_pics/
 dist/
 build/
 *.egg-info/
