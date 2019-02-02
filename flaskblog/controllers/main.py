@@ -92,8 +92,7 @@ def about():
 
 # --------------------------------- Post CRUD -------------------------------------------#
 
-@main.route("/listpost")
-@login_required
+@main.route("/view-all")
 def view_post():
     posts = Post.query.all()
     return render_template("posts.html", posts=posts)
@@ -146,7 +145,7 @@ def delete_post(post_id):
     db.session.delete(post)
     db.session.commit()
     flash('Your post has been deleted!', 'success')
-    return redirect(url_for('home'))
+    return redirect(url_for('.view_post'))
 
 
 

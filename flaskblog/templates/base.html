@@ -36,14 +36,16 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url_for('.home') }}">Home</a></li>
 
-                    {% if not current_user.is_authenticated() %}
-                        <li><a href="{{ url_for('.login') }}">Login</a></li>
-                    {% else %}
+                    {% if current_user.is_authenticated() %}
+
                         <li><a href="{{ url_for('.logout') }}">Logout</a></li>
 
                         <li><a href="{{ url_for('.account') }}">View Account</a></li>
 
                         <li><a href="{{ url_for('.new_post') }}">Create Post</a></li>
+
+                    {% else %}
+                        <li><a href="{{ url_for('.login') }}">Login</a></li>
                     {% endif %}
 
                     <li><a href="{{ url_for('.view_post') }}">View Posts</a></li>
