@@ -3,7 +3,7 @@ import secrets
 from PIL import Image
 from flask import Blueprint, render_template, flash, request, redirect, url_for
 from flask.ext.login import login_user, logout_user, login_required, current_user
-
+from flask import current_app as app
 from flaskblog.models import db
 from flaskblog.extensions import cache
 from flaskblog.forms import LoginForm, RegistrationForm, UpdateAccountForm
@@ -100,7 +100,7 @@ def save_picture(form_picture):
     random_hex = secrets.token_hex(8)
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = random_hex + f_ext
-    picture_path = os.path.join('./flaskblog/static/profile_pics', picture_fn)
+    picture_path = os.path.join(app.root_path, 'static/profile_pics', picture_fn)
 
     output_size = (125, 125)
     i = Image.open(form_picture)
