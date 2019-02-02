@@ -60,7 +60,7 @@ def login():
 @main.route("/logout")
 def logout():
     logout_user()
-    flash("You have been logged out.", "success")
+    flash("You have been logged out", "success")
 
     return redirect(url_for(".home"))
 
@@ -69,6 +69,12 @@ def logout():
 @login_required
 def view_post():
     return render_template("posts.html", posts=posts)
+
+
+@main.route("/account")
+@login_required
+def account():
+    return render_template('account.html', title='Account')
 
 
 @main.route("/about")
