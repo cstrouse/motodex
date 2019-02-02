@@ -9,7 +9,7 @@ from flaskblog.models import User, Post
 
 posts = [
     {
-        'author': 'BW Block',
+        'author': '@bl0ckstar',
         'title': 'Blog Post 1',
         'content': 'First post content',
         'date_posted': 'Jan 31, 2019'
@@ -29,7 +29,6 @@ main = Blueprint('main', __name__)
 @cache.cached(timeout=1000)
 def home():
     return render_template('index.html')
-
 
 @main.route("/register", methods=['GET', 'POST'])
 def register():
@@ -55,7 +54,6 @@ def login():
         return redirect(request.args.get("next") or url_for(".view_post"))
 
     return render_template("login.html", form=form)
-
 
 @main.route("/logout")
 def logout():
