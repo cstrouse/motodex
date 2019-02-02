@@ -49,7 +49,7 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).one()
-        login_user(user)
+        login_user(user, remember=form.remember.data )
 
         flash("Logged in successfully.", "success")
         return redirect(request.args.get("next") or url_for(".view_post"))
