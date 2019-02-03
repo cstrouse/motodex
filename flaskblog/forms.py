@@ -1,7 +1,7 @@
 from flask_wtf import Form
 from flask.ext.login import current_user
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 
 from flaskblog.models import User
@@ -39,8 +39,10 @@ class RegistrationForm(Form):
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
-    confirm_password = PasswordField('Confirm Password',
-                                     validators=[DataRequired(), EqualTo('password')])
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+
+    user_type = SelectField(u'Accout Type', choices=[('seller', 'Seller'), ('buyer', 'Buyer')])
+
     submit = SubmitField('Sign Up')
 
     def validate_username(self, username):
