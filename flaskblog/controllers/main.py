@@ -1,7 +1,7 @@
 import os
 import secrets
 from PIL import Image
-from flask import Blueprint, render_template, flash, request, redirect, url_for
+from flask import Blueprint, render_template, flash, request, redirect, url_for, abort
 from flask.ext.login import login_user, logout_user, login_required, current_user
 from flask import current_app as app
 from flaskblog.models import db
