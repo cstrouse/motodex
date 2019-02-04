@@ -6,11 +6,13 @@ __email__ = 'bl0ckstar@protonmail.com'
 __version__ = '1.3'
 
 from flask import Flask
+from flask_mail import Mail
 from webassets.loaders import PythonLoader as PythonAssetsLoader
 
 from flaskblog.controllers.main import main
 from flaskblog import assets
 from flaskblog.models import db
+from flaskblog import settings
 
 from flaskblog.extensions import (
     cache,
@@ -55,5 +57,9 @@ def create_app(object_name):
 
     # register our blueprints
     app.register_blueprint(main)
+
+
+    mail = Mail(app)
+
 
     return app

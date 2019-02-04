@@ -1,6 +1,7 @@
 import tempfile
 db_file = tempfile.NamedTemporaryFile()
-
+mail_username = 'test'
+mail_password = 'test'
 
 class Config(object):
     SECRET_KEY = 'secret key'
@@ -23,6 +24,12 @@ class DevConfig(Config):
     CACHE_TYPE = 'null'
     ASSETS_DEBUG = True
 
+    # config mail server
+    MAIL_SERVER = 'smtp.googlemail.com'
+    MAIL_PORT = 587
+    MAIL_USE_TLS = True
+    MAIL_USERNAME = mail_username
+    MAIL_PASSWORD = mail_password
 
 class TestConfig(Config):
     ENV = 'test'
@@ -34,3 +41,5 @@ class TestConfig(Config):
 
     CACHE_TYPE = 'null'
     WTF_CSRF_ENABLED = False
+
+
