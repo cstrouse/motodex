@@ -47,7 +47,7 @@ def create_app(object_name):
     # initialize SQLAlchemy
     db.init_app(app)
 
-    login_manager.init_app(app)
+    login_manager.init_app(app)       #login manager not working correctly <--------------
 
     # Import and register the different asset bundles
     assets_env.init_app(app)
