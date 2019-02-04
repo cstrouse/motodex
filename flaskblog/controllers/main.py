@@ -9,7 +9,7 @@ from flaskblog.extensions import cache
 from flaskblog.forms import LoginForm, RegistrationForm, UpdateAccountForm, PostForm
 from flaskblog.models import User, Post
 
-
+#     ---------  user-login methods need work
 
 main = Blueprint('main', __name__)
 
