@@ -97,7 +97,7 @@ def view_post():
     page = request.args.get('page', 1, type=int)
     posts = Post.query.paginate(page=page, per_page=5)
 
-    return render_template("posts.html", posts=posts)
+    return render_template("posts.html", posts=posts, legend = "All Posts ")
 
 
 @main.route("/post/new", methods=['GET', 'POST'])
