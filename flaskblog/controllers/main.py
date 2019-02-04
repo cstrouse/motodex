@@ -94,7 +94,9 @@ def about():
 
 @main.route("/view-all")
 def view_post():
-    posts = Post.query.all()
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.paginate(page=page, per_page=2)
+
     return render_template("posts.html", posts=posts)
 
 
