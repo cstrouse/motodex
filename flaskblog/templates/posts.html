@@ -1,7 +1,7 @@
 {% extends "base-sidebar.html" %}
 {% block body %}
 
- <legend class="border-bottom mb-4">{{ legend }}</legend>
+     <h2 class="mb-3">{{ legend }} </h2>
     {% for post in posts.items %}
         <article class="media content-section">
           <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
