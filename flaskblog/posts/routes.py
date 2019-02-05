@@ -11,6 +11,7 @@ from flaskblog.posts.forms import PostForm
 
 posts = Blueprint('posts', __name__)
 
+
 # --------------------------------- Post CRUD -------------------------------------------#
 
 @posts.route("/view-all")

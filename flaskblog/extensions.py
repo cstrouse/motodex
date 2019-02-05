@@ -5,6 +5,8 @@ from flask_login import LoginManager
 from flask_assets import Environment
 from flask_mail import Mail
 
+mail = Mail()
+
 from flaskblog.models import User
 
 # Setup flask cache

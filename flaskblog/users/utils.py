@@ -1,10 +1,9 @@
-
 import os
 import secrets
 from PIL import Image
 from flask import url_for, current_app
 from flask_mail import Message
-#from flaskblog import mail
+from flaskblog.extensions import mail
 
 
 
@@ -28,4 +27,5 @@ def send_reset_email(user):
                  {url_for('.reset_token', token=token, _external=True)}
                  If you did not make this request then simply ignore this email and no changes will be made.
                  '''
-    app.mail.send(msg)
+    #mail.send(msg)    ---- Not ready for production
+    return True

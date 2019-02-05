@@ -21,10 +21,9 @@ from flaskblog.extensions import (
     assets_env,
     debug_toolbar,
     login_manager,
-    Mail
+    mail
 )
 
-mail = Mail()
 
 def create_app(object_name):
     """
