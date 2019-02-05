@@ -35,7 +35,7 @@ def create_app(object_name):
         object_name: the python path of the config object,
                      e.g. flaskblog.settings.ProdConfig
 
-        env:  The name of the current environment, e.g. prod or dev
+        env:   The name of the current environment, e.g. prod or dev
     """
 
     app = Flask(__name__)
