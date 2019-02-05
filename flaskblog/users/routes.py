@@ -2,16 +2,11 @@ from flask import Blueprint
 
 
 
-
-
-
-
-
 users = Blueprint('users', __name__)
 
 
 
-@main.route("/register", methods=['GET', 'POST'])
+@users.route("/register", methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
@@ -24,7 +19,7 @@ def register():
     return render_template('register.html', title='Register', form=form)
 
 
-@main.route("/login", methods=["GET", "POST"])
+@users.route("/login", methods=["GET", "POST"])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
@@ -36,7 +31,7 @@ def login():
 
     return render_template("login.html", form=form)
 
-@main.route("/logout")
+@users.route("/logout")
 def logout():
     logout_user()
     flash("You have been logged out", "success")
@@ -44,7 +39,7 @@ def logout():
     return redirect(url_for(".home"))
 
 
-@main.route("/account", methods=['GET', 'POST'])
+@users.route("/account", methods=['GET', 'POST'])
 @login_required
 def account():
     form = UpdateAccountForm()
@@ -63,11 +58,13 @@ def account():
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     return render_template('account.html', title='Account', image_file=image_file, form=form)
 
+
+
 # --------------------------------- Reset Password ---------------------------------------#
 
 
 
-@main.route("/reset_password", methods=['GET', 'POST'])
+@users.route("/reset_password", methods=['GET', 'POST'])
 def reset_request():
     if current_user.is_authenticated():
         return redirect(url_for('.home'))
@@ -80,7 +77,7 @@ def reset_request():
     return render_template('reset_request.html', title='Reset Password', form=form)
 
 
-@main.route("/reset_password/<token>", methods=['GET', 'POST'])
+@users.route("/reset_password/<token>", methods=['GET', 'POST'])
 def reset_token(token):
     if current_user.is_authenticated():
         return redirect(url_for('.home'))
