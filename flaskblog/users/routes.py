@@ -21,7 +21,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         flash(f'Account created for {form.username.data}!', 'success')
-        return redirect(url_for('.login'))
+        return redirect(url_for('.users.login'))
     return render_template('register.html', title='Register', form=form)
 
 
@@ -33,7 +33,7 @@ def login():
         login_user(user, remember=form.remember.data )
 
         flash("Logged in successfully.", "success")
-        return redirect(request.args.get("next") or url_for(".view_post"))
+        return redirect(request.args.get("next") or url_for('posts.view_post'))
 
     return render_template("login.html", form=form)
 
@@ -42,7 +42,7 @@ def logout():
     logout_user()
     flash("You have been logged out", "success")
 
-    return redirect(url_for(".home"))
+    return redirect(url_for("main.home"))
 
 
 @users.route("/account", methods=['GET', 'POST'])
@@ -73,20 +73,20 @@ def account():
 @users.route("/reset_password", methods=['GET', 'POST'])
 def reset_request():
     if current_user.is_authenticated():
-        return redirect(url_for('.home'))
+        return redirect(url_for('main.home'))
     form = RequestResetForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         #send_reset_email(user)
         flash('todo: an email has been sent with instructions to reset your password.', 'info')
-        return redirect(url_for('.login'))
+        return redirect(url_for('.users.login'))
     return render_template('reset_request.html', title='Reset Password', form=form)
 
 
 @users.route("/reset_password/<token>", methods=['GET', 'POST'])
 def reset_token(token):
     if current_user.is_authenticated():
-        return redirect(url_for('.home'))
+        return redirect(url_for('.main.home'))
     user = User.verify_reset_token(token)
     if user is None:
         flash('Sorry, that is an invalid or expired token', 'warning')
@@ -96,5 +96,5 @@ def reset_token(token):
         user.set_password(form.password.data)
         db.session.commit()
         flash('Your password has been updated! You are now able to log in', 'success')
-        return redirect(url_for('.login'))
+        return redirect(url_for('.users.login'))
     return render_template('reset_token.html', title='Reset Password', form=form)
