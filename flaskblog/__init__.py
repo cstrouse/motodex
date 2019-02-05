@@ -10,6 +10,9 @@ from flask_mail import Mail
 from webassets.loaders import PythonLoader as PythonAssetsLoader
 
 from flaskblog.controllers.main import main
+from flaskblog.users.routes import users
+from flaskblog.posts.routes import posts
+
 from flaskblog import assets
 from flaskblog.models import db
 from flaskblog import settings
@@ -21,6 +24,7 @@ from flaskblog.extensions import (
     login_manager
 )
 
+mail = Mail()
 
 def create_app(object_name):
     """
@@ -57,9 +61,11 @@ def create_app(object_name):
 
     # register our blueprints
     app.register_blueprint(main)
+    app.register_blueprint(users)
+    app.register_blueprint(posts)
 
 
-    mail = Mail(app)
+    mail.init_app(app)
 
 
     return app

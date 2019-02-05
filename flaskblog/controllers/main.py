@@ -1,5 +1,6 @@
 from flask import render_template, request, Blueprint
 from flaskblog.models import Post
+from flaskblog.extensions import cache
 
 main = Blueprint('main', __name__)
 

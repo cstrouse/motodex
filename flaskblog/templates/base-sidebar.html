@@ -30,21 +30,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url_for('.home') }}">Flask Micro Blog</a>
+                <a class="navbar-brand" href="{{ url_for('main.home') }}">Flask Micro Blog</a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-               <!--     <li><a href="{{ url_for('.home') }}">Home</a></li>  -->
+               <!--     <li><a href="{{ url_for('main.home') }}">Home</a></li>  -->
 
-                        <li><a href="{{ url_for('.view_post') }}">View All</a></li>
+                        <li><a href="{{ url_for('posts.view_post') }}">View All</a></li>
 
                     {% if current_user.is_authenticated() %}
 
-                        <li><a href="{{ url_for('.logout') }}">Logout</a></li>
+                        <li><a href="{{ url_for('users.logout') }}">Logout</a></li>
 
-                        <li><a href="{{ url_for('.account') }}">View Account</a></li>
+                        <li><a href="{{ url_for('users.account') }}">View Account</a></li>
 
-                        <li><a href="{{ url_for('.new_post') }}">Create Post</a></li>
+                        <li><a href="{{ url_for('posts.new_post') }}">Create Post</a></li>
 
                     {% else %}
                         <li><a href="{{ url_for('.login') }}">Login</a></li>
