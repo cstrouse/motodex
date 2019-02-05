@@ -6,7 +6,6 @@ mail_password = 'test'
 class Config(object):
     SECRET_KEY = 'secret key'
 
-
 class ProdConfig(Config):
     ENV = 'prod'
     SQLALCHEMY_DATABASE_URI = 'sqlite:///../database.db'
