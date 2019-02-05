@@ -1,6 +1,6 @@
 import tempfile
 db_file = tempfile.NamedTemporaryFile()
-mail_username = 'test'
+mail_username = 'bwblock3@gmail.com'
 mail_password = 'test'
 
 class Config(object):

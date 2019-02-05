@@ -51,7 +51,7 @@ def create_app(object_name):
     # initialize SQLAlchemy
     db.init_app(app)
 
-    login_manager.init_app(app)       #login manager not working correctly <--------------
+    login_manager.init_app(app)
 
     # Import and register the different asset bundles
     assets_env.init_app(app)
@@ -64,6 +64,7 @@ def create_app(object_name):
     app.register_blueprint(users)
     app.register_blueprint(posts)
 
+    #init mailserver
 
     mail.init_app(app)
 
