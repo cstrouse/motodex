@@ -1,7 +1,9 @@
 from flask.ext.cache import Cache
 from flask.ext.debugtoolbar import DebugToolbarExtension
-from flask.ext.login import LoginManager
+#from flask.ext.login import LoginManager
+from flask_login import LoginManager
 from flask_assets import Environment
+from flask_mail import Mail
 
 from flaskblog.models import User
 

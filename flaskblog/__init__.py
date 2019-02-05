@@ -6,7 +6,6 @@ __email__ = 'bl0ckstar@protonmail.com'
 __version__ = '1.3'
 
 from flask import Flask
-from flask_mail import Mail
 from webassets.loaders import PythonLoader as PythonAssetsLoader
 
 from flaskblog.controllers.main import main
@@ -15,13 +14,14 @@ from flaskblog.posts.routes import posts
 
 from flaskblog import assets
 from flaskblog.models import db
-from flaskblog import settings
+#from flaskblog import settings
 
 from flaskblog.extensions import (
     cache,
     assets_env,
     debug_toolbar,
-    login_manager
+    login_manager,
+    Mail
 )
 
 mail = Mail()
@@ -67,6 +67,5 @@ def create_app(object_name):
     #init mailserver
 
     mail.init_app(app)
-
 
     return app
