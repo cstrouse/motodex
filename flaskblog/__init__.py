@@ -11,6 +11,7 @@ from webassets.loaders import PythonLoader as PythonAssetsLoader
 from flaskblog.controllers.main import main
 from flaskblog.users.routes import users
 from flaskblog.posts.routes import posts
+from flaskblog.errors.handlers import errors
 
 from flaskblog import assets
 from flaskblog.models import db
@@ -62,6 +63,8 @@ def create_app(object_name):
     app.register_blueprint(main)
     app.register_blueprint(users)
     app.register_blueprint(posts)
+    app.register_blueprint(errors)
+
 
     #init mailserver
 
