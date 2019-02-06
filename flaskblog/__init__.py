@@ -65,7 +65,6 @@ def create_app(object_name):
     app.register_blueprint(posts)
     app.register_blueprint(errors)
 
-
     #init mailserver
 
     mail.init_app(app)
