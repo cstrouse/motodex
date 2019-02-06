@@ -12,7 +12,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
-    password = db.Column(db.String(60), nullable=False)
+    password = db.Column(db.String(95), nullable=False)
     posts = db.relationship('Post', backref='author', lazy=True)
 
     def get_reset_token(self, expires_sec=1800):
@@ -28,10 +28,10 @@ class User(db.Model, UserMixin):
             return None
         return User.query.get(user_id)
 
-#def __init__(self, username, email, password):
-#        self.username = username
-#        self.email = email
-#        self.set_password(password)
+    def __init__(self, username, email):
+        self.username = username
+        self.email = email
+
 
     def set_password(self, password):
         self.password = generate_password_hash(password)
