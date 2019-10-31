@@ -72,7 +72,7 @@ class Post(db.Model):
         return f"Post('{self.title}', '{self.date_posted}')"
         
 #todo:
-###  create db model for vehicles, vehicle index  ###
+###  create db model for vehicles, vehicle index  #####
 
 
 
