@@ -8,6 +8,7 @@ instance/
 
 .pytest_cache/
 .coverage
+.DS_Store
 htmlcov/
 
 profile_pics/
