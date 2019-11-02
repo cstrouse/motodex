@@ -74,7 +74,7 @@ class Post(db.Model):
 class Index(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     make_id = db.Column(db.Integer, db.ForeignKey('make.id'), nullable=False)
-    model_id = db.Column(db.Integer, db.ForeignKey('model.id'), nullable=False)
+    model_id = db.Column(db.Integer, db.ForeignKey('modelyear.id'), nullable=False)
     trim_id = db.Column(db.Integer, db.ForeignKey('trim.id'), nullable=True)
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     condition = db.Column(db.String(10), nullable=True)
@@ -109,8 +109,9 @@ class Make(db.Model):
         return f"Index('{self.name}')"
     
     
-class Model(db.Model):
+class Modelyear(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    year = db.Column(db.Integer, nullable=True)
     make_id = db.Column(db.Integer, db.ForeignKey('make.id'), nullable=False)
     name = db.Column(db.String(20), nullable=False)
     
