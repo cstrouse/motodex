@@ -94,9 +94,9 @@ class Index(db.Model):
     odo = db.Column(db.Integer, nullable=False)
     price = db.Column(db.Integer, nullable=False)
     zip = db.Column(db.Integer, nullable=False)
-    warranty = db.Column(db.Bool, nullable=True)
-    dealer = db.Column(db.Bool, nullable=True)
-    automatic = db.Column(db.Bool, nullable=True)
+    warranty = db.Column(db.Boolean, nullable=True)
+    dealer = db.Column(db.Boolean, nullable=True)
+    automatic = db.Column(db.Boolean, nullable=True)
 
     def __repr__(self):
         return f"Index('{self.year}', '{self.make_id}')"
