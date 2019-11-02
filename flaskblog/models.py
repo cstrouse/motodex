@@ -71,6 +71,47 @@ class Post(db.Model):
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}')"
         
+class Index(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    make_id = db.Column(db.Integer, db.ForeignKey('make.id'), nullable=False)
+    model_id = db.Column(db.Integer, db.ForeignKey('model.id'), nullable=False)
+    trim_id = db.Column(db.Integer, db.ForeignKey('trim.id'), nullable=True)
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    condition = db.Column(db.String(10), nullable=True)
+    year = db.Column(db.Integer, nullable = False)
+    fuel_type = db.Column(db.String(12), nullable=True)
+    title = db.Column(db.String(12), nullable=True)
+    fuel_type = db.Column(db.String(12), nullable=True)
+    vin = db.Column(db.String(18), nullable=False)
+    ext_color = db.Column(db.String(12), nullable=True)
+    int_color = db.Column(db.String(12), nullable=True)
+    body_type = db.Column(db.String(12), nullable=True)
+    size = db.Column(db.String(12), nullable=True)
+    drive = db.Column(db.String(12), nullable=True)
+    engine = db.Column(db.String(20), nullable=True)
+    url = db.Column(db.String(100), nullable=False)
+    image_file = db.Column(db.String(20), nullable=False, default='vehicle.jpg')
+    odo = db.Column(db.Integer, nullable=False)
+    price = db.Column(db.Integer, nullable=False)
+    zip = db.Column(db.Integer, nullable=False)
+    warranty = db.Column(db.Bool, nullable=True)
+    dealer = db.Column(db.Bool, nullable=True)
+    automatic = db.Column(db.Bool, nullable=True)
+
+    def __repr__(self):
+        return f"Index('{self.year}', '{self.make_id}')"
+    
+class Make(db.Model):
+    id = db.Column(db.Integer, primary_key=True)    
+    
+class Model(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    
+class Trim(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    
+    
+        
 #todo:
 ###  create db model for vehicles, vehicle index  #####
 
