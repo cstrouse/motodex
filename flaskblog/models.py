@@ -103,12 +103,27 @@ class Index(db.Model):
     
 class Make(db.Model):
     id = db.Column(db.Integer, primary_key=True)    
+    name = db.Column(db.String(20), nullable=False)
+
+    def __repr__(self):
+        return f"Index('{self.name}')"
+    
     
 class Model(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    make_id = db.Column(db.Integer, db.ForeignKey('make.id'), nullable=False)
+    name = db.Column(db.String(20), nullable=False)
+    
+    def __repr__(self):
+        return f"Index('{self.name}')"
     
 class Trim(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    model_id = db.Column(db.Integer, db.ForeignKey('make.id'), nullable=False)
+    name = db.Column(db.String(20), nullable=False)
+    
+    def __repr__(self):
+        return f"Index('{self.name}')"
     
     
         
