@@ -112,8 +112,7 @@ class Trim(db.Model):
     
     
         
-#todo:
-###  create db model for vehicles, vehicle index  #####
+#todo:  ###  create db model for vehicles, vehicle index  #####
 
 
 
