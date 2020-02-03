@@ -72,6 +72,7 @@ class Post(db.Model):
         return f"Post('{self.title}', '{self.date_posted}')"
         
 #todo:
+# Motorank branch = add features described below:
 # link column in post table
 # upvotes and downvotes in post table
 # user reputation score.
