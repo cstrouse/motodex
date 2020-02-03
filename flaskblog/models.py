@@ -9,6 +9,7 @@ db = SQLAlchemy()
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
+    rep = db.Column(db.Integer)															  #user reputation index
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
@@ -63,13 +64,22 @@ class User(db.Model, UserMixin):
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)   			
+    title = db.Column(db.String(100), nullable=True)   
+    link = db.Column(db.String(100), nullable=False)									  #link to listing
+    category = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)		  #category for post			
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    content = db.Column(db.Text, nullable=False)
+    content = db.Column(db.Text, nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}')"
+
+class Category(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)   
+
+    def __repr__(self):
+        return f"Category('{self.name}')"
         
 #todo:
 # Motorank branch = add features described below:
