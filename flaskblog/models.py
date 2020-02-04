@@ -66,7 +66,7 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=True)   
     link = db.Column(db.String(100), nullable=False)									  #link to listing
-    category = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=True)		  #category for post	
+    cat = db.Column(db.String(100), nullable=True)		  #category for post	
     up_votes = db.Column(db.Integer)
     down_votes = db.Column(db.Integer)		
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
