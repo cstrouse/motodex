@@ -26,7 +26,7 @@ def view_post():
 @login_required
 def new_post():
     form = PostForm()
-    choicelist = [(0,"Exotic"),(1,"Modern classics"),(2,"Muscle cars"),(3,"Overland/4x4"),(4,"Sports car"),(5,"Corvette"),(6,"What car should I buy?")]
+    choicelist = [(0,"Choose One"),(1,"Exotic"),(2,"Modern classics"),(3,"Muscle cars"),(4,"Overland/4x4"),(5,"Sports car"),(6,"Corvette"),(7,"I'm looking for...")]
     form.category.choices=choicelist
     if form.validate_on_submit():
         post = Post(content=form.content.data, link=form.link.data, cat=choicelist[int(form.category.data)][1], title=form.title.data, author=current_user)

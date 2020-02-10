@@ -13,7 +13,8 @@
           </div>
         {% endif %}
       </div>
-      <h2> <a class="article-title" href="{{post.link}}">{{ post.title }}</h2></a>
+      <h2><p class="article-content">{{ post.title }}</p></h2>
+      <h4>link: <a class="article-title" href="{{post.link}}">{{ post.link }}</h4></a>
       <p class="article-content">Category: {{ post.cat }}</p>
       <p class="article-content">{{ post.content }}</p>
     </div>
