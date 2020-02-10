@@ -29,7 +29,7 @@ def new_post():
     choicelist = [(0,"Exotic"),(1,"Modern classics"),(2,"Muscle cars"),(3,"Overland/4x4"),(4,"Sports car"),(5,"Corvette"),(6,"What car should I buy?")]
     form.category.choices=choicelist
     if form.validate_on_submit():
-        post = Post(content=form.content.data, link=form.link.data, cat=choicelist[int(form.category.data)][1], title=form.link.data, author=current_user)
+        post = Post(content=form.content.data, link=form.link.data, cat=choicelist[int(form.category.data)][1], title=form.title.data, author=current_user)
         db.session.add(post)
         db.session.commit()
         flash('Your post has been created!', 'success')
