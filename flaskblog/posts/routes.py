@@ -17,7 +17,7 @@ posts = Blueprint('posts', __name__)
 @posts.route("/view-all")
 def view_post():
     page = request.args.get('page', 1, type=int)
-    posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
+    posts = Post.query.order_by(Post.upvotes.desc()).paginate(page=page, per_page=5)
 
     return render_template("posts.html", posts=posts, legend = "Recent Posts ")
 
