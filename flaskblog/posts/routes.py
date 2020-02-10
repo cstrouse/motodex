@@ -61,7 +61,26 @@ def update_post(post_id):
     return render_template('create_post.html', title='Update Post',
                            form=form, legend='Update Post')
 
+@posts.route("/post/<int:post_id>/flag", methods=['GET', 'POST'])
+@login_required
+def flag_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    post.flag_count += 1
+    print(post.flag_count)
+    db.session.commit()
+    flash("Post has been flagged.", 'success')
+    return redirect(url_for('.view_post'))
 
+@posts.route("/post/<int:post_id>/upvote", methods=['GET', 'POST'])
+@login_required
+def upvote_post(post_id):
+	post = Post.query.get_or_404(post_id)
+	print(post.upvotes)
+	post.upvotes += 1
+	db.session.commit()
+	flash('Post upvoted!', 'success')
+	return redirect(url_for('.view_post'))
+    
 @posts.route("/post/<int:post_id>/delete", methods=['POST'])
 @login_required
 def delete_post(post_id):
