@@ -12,10 +12,10 @@
               <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
             </div>
 
-            <h4>category: {{ post.cat }}</h4>       
+            <h5>category: {{ post.cat }}</h5>       
             <h2><a class="article-title" href="{{ url_for('.post', post_id=post.id) }}">{{ post.title }}</a></h2>
-            <h3><a class="article-title" href="{{ post.link }}">{{ post.link }}</a></h3>
-            <p class="article-content">{{ post.content }}</p>
+            <h5><a class="article-title" href="{{ post.link }}">{{ post.link }}</a></h5>
+
           </div>
         </article>
     {% endfor %}
