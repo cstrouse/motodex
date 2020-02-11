@@ -75,7 +75,7 @@ def flag_post(post_id):
 def upvote_post(post_id):
 	post = Post.query.get_or_404(post_id)
 	post.upvotes += 1
-	print(post.upvotes)
+	#print(post.upvotes)
 	db.session.commit()
 	flash('Post upvoted!', 'success')
 	return redirect(url_for('.view_post'))
