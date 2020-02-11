@@ -74,10 +74,20 @@ def flag_post(post_id):
 @login_required
 def upvote_post(post_id):
 	post = Post.query.get_or_404(post_id)
-	print(post.upvotes)
 	post.upvotes += 1
+	print(post.upvotes)
 	db.session.commit()
 	flash('Post upvoted!', 'success')
+	return redirect(url_for('.view_post'))
+	
+@posts.route("/post/<int:post_id>/down", methods=['GET', 'POST'])
+@login_required
+def down_post(post_id):
+	post = Post.query.get_or_404(post_id)
+	if post.upvotes >= 1:
+	    post.upvotes -= 1
+	    db.session.commit()
+	flash('Post downvoted!', 'success')
 	return redirect(url_for('.view_post'))
     
 @posts.route("/post/<int:post_id>/delete", methods=['POST'])
