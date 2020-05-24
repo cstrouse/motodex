@@ -20,7 +20,7 @@
 
             <h5>Category: {{ post.cat }}</h5>       
             <h2><a class="article-title" href="{{ url_for('.post', post_id=post.id) }}">{{ post.title }}</a></h2>
-            <h5><a class="article-title" href="{{ post.link }}">{{ post.link }}</a></h5>
+            <h5><a class="article-title" href="{{ post.link }}" target="_blank" rel="noopener noreferrer">{{ post.link }}</a></h5>
 
        {% if current_user.is_authenticated() %}
             <a class="btn btn-primary btn-sm mt-1 mb-1" href="{{ url_for('.upvote_post', post_id=post.id) }}">Up</a>
