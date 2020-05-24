@@ -11,6 +11,7 @@ from flaskblog.posts.forms import PostForm
 
 posts = Blueprint('posts', __name__)
 
+choicelist = [(0,"Choose One"),(1,"Exotic"),(2,"Modern classics"),(3,"Muscle cars"),(4,"Overland/4x4"),(5,"Sports car"),(6,"Corvette"),(7,"I'm looking for...")]
 
 # --------------------------------- Post CRUD -------------------------------------------#
 
@@ -26,7 +27,6 @@ def view_post():
 @login_required
 def new_post():
     form = PostForm()
-    choicelist = [(0,"Choose One"),(1,"Exotic"),(2,"Modern classics"),(3,"Muscle cars"),(4,"Overland/4x4"),(5,"Sports car"),(6,"Corvette"),(7,"I'm looking for...")]
     form.category.choices=choicelist
     if form.validate_on_submit():
         post = Post(content=form.content.data, link=form.link.data, cat=choicelist[int(form.category.data)][1], title=form.title.data, author=current_user)
@@ -49,6 +49,7 @@ def update_post(post_id):
     if post.author != current_user:
         abort(403)
     form = PostForm()
+    form.category.choices=choicelist
     if form.validate_on_submit():
         post.title = form.title.data
         post.content = form.content.data
@@ -58,8 +59,8 @@ def update_post(post_id):
     elif request.method == 'GET':
         form.title.data = post.title
         form.content.data = post.content
-    return render_template('create_post.html', title='Update Post',
-                           form=form, legend='Update Post')
+        form.link.data = post.link
+    return render_template('create_post.html', title='Update Post', form=form, legend='Update Post')
 
 @posts.route("/post/<int:post_id>/flag", methods=['GET', 'POST'])
 @login_required
