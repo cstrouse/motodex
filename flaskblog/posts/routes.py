@@ -67,8 +67,11 @@ def update_post(post_id):
 def flag_post(post_id):
     post = Post.query.get_or_404(post_id)
     post.flag_count += 1
-    db.session.commit()
     flash("Post has been flagged.", 'success')
+    if post.flag_count > 3:
+        db.session.delete(post)
+        flash("Post has been removed.", 'warning')
+    db.session.commit()       
     return redirect(url_for('.view_post'))
 
 @posts.route("/post/<int:post_id>/upvote", methods=['GET', 'POST'])
