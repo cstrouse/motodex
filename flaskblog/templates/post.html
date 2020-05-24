@@ -13,9 +13,11 @@
           </div>
         {% endif %}
       </div>
+          <p class="article-content">Category: {{ post.cat }}</p>
+      <h4><a class="article-title" href="{{post.link}}" target="_blank" rel="noopener noreferrer">View original listing</h4></a>
       <h2><p class="article-content">{{ post.title }}</p></h2>
-      <h4>link: <a class="article-title" href="{{post.link}}">{{ post.link }}</h4></a>
-      <p class="article-content">Category: {{ post.cat }}</p>
+
+
       <p class="article-content">{{ post.content }}</p>
     </div>
   </article>
