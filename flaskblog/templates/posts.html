@@ -20,9 +20,10 @@
 
             <h5>Category: {{ post.cat }}</h5>       
             <h2><a class="article-title" href="{{ url_for('.post', post_id=post.id) }}">{{ post.title }}</a></h2>
-            <h5><a class="article-title" href="{{ post.link }}" target="_blank" rel="noopener noreferrer">View original listing</a></h5>
+            
+<!--            <h5><a class="article-title" href="{{ post.link }}" target="_blank" rel="noopener noreferrer">View original listing</a></h5>      --!>
 
-       {% if current_user.is_authenticated() %}
+       {% if current_user.is_authenticated() and post.author != current_user %}
             <a class="btn btn-primary btn-sm mt-1 mb-1" href="{{ url_for('.upvote_post', post_id=post.id) }}">Up</a>
             <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('.down_post', post_id=post.id) }}">Down</a>
             <a class="btn btn-danger btn-sm mt-1 mb-1" href="{{ url_for('.flag_post', post_id=post.id) }}">Flag</a>

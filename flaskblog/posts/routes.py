@@ -75,6 +75,8 @@ def flag_post(post_id):
 @login_required
 def upvote_post(post_id):
 	post = Post.query.get_or_404(post_id)
+	if post.author == current_user:
+	    abort(403)
 	post.upvotes += 1
 	#print(post.upvotes)
 	db.session.commit()
@@ -85,6 +87,8 @@ def upvote_post(post_id):
 @login_required
 def down_post(post_id):
 	post = Post.query.get_or_404(post_id)
+	if post.author == current_user:
+	    abort(403)
 	if post.upvotes >= 1:
 	    post.upvotes -= 1
 	    db.session.commit()
