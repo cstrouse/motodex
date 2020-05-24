@@ -1,4 +1,4 @@
-#Motofind webapp
+#Motodex Webapp --- Demo version
 
 #Flask Foundation
 [![Build Status](https://travis-ci.org/JackStouffer/Flask-Foundation.png)](https://travis-ci.org/JackStouffer/Flask-Foundation)
@@ -18,6 +18,3 @@ Best practices were learned from:
 
 Flask-Foundation is licensed under the BSD license. For more info see LICENSE.md
 
-# Want to learn more about Flask?
-
-I also wrote a book on Flask! You can order it [here](https://www.packtpub.com/web-development/mastering-flask).
