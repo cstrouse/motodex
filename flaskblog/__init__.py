@@ -5,7 +5,10 @@ __author__ = 'bl0ckstar'
 __email__ = 'bl0ckstar@protonmail.com'
 __version__ = '1.3'
 
+from dotenv import load_dotenv
 from flask import Flask
+from flask_caching import Cache
+from flask_migrate import Migrate
 from webassets.loaders import PythonLoader as PythonAssetsLoader
 
 from flaskblog.controllers.main import main
@@ -18,13 +21,14 @@ from flaskblog.models import db
 #from flaskblog import settings
 
 from flaskblog.extensions import (
-    cache,
+#    cache,
     assets_env,
     debug_toolbar,
     login_manager,
     mail
 )
 
+load_dotenv()
 
 def create_app(object_name):
     """
@@ -40,9 +44,11 @@ def create_app(object_name):
 
     app = Flask(__name__)
 
+    #app.config.from_pyfile('settings.py')
     app.config.from_object(object_name)
 
     # initialize the cache
+    cache = Cache(app, config={"CACHE_TYPE": app.config.get('CACHE_TYPE')})
     cache.init_app(app)
 
     # initialize the debug tool bar
@@ -50,6 +56,7 @@ def create_app(object_name):
 
     # initialize SQLAlchemy
     db.init_app(app)
+    migrate = Migrate(app, db, compare_type=True)
 
     login_manager.init_app(app)
 

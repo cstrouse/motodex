@@ -1,5 +1,5 @@
-from flask.ext.sqlalchemy import SQLAlchemy
-from flask.ext.login import UserMixin, AnonymousUserMixin
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import UserMixin, AnonymousUserMixin
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask import current_app as app
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -12,8 +12,8 @@ class User(db.Model, UserMixin):
     rep = db.Column(db.Integer)															  #user reputation index
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
-    image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
-    password = db.Column(db.String(60), nullable=False)
+    image_file = db.Column(db.String(255), nullable=False, default='default.jpg')
+    password = db.Column(db.String(255), nullable=False)
     posts = db.relationship('Post', backref='author', lazy=True)
 
     def get_reset_token(self, expires_sec=1800):
