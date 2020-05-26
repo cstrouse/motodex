@@ -1,10 +1,10 @@
 from flask import render_template, request, Blueprint
 from flaskblog.models import Post
-from flaskblog.extensions import cache
+from flask_caching import Cache
 
 main = Blueprint('main', __name__)
 
-
+cache = Cache()
 
 @main.route('/')
 @cache.cached(timeout=1000)

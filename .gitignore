@@ -10,8 +10,10 @@ instance/
 .coverage
 .DS_Store
 htmlcov/
+.idea
 
 profile_pics/
 dist/
 build/
 *.egg-info/
+.env
