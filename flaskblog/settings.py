@@ -6,10 +6,10 @@ load_dotenv()
 mail_username = 'bwblock3@gmail.com'
 mail_password = 'test'
 
-POSTGRES_USER = os.getenv('POSTGRES_USER') 
-POSTGRES_PW = os.getenv('POSTGRES_PW') 
-POSTGRES_URL = '127.0.0.1:5432'
-POSTGRES_DB = 'motodex'
+POSTGRES_USER = os.getenv('POSTGRES_USER', 'motodex')
+POSTGRES_PW = os.getenv('POSTGRES_PW', 'motodex')
+POSTGRES_URL = os.getenv('POSTGRES_URL', '127.0.0.1:5432')
+POSTGRES_DB = os.getenv('POSTGRES_DB', 'motodex')
 
 
 class Config(object):
