@@ -7,7 +7,6 @@ __version__ = '1.3'
 
 from dotenv import load_dotenv
 from flask import Flask
-from flask_caching import Cache
 from flask_migrate import Migrate
 from webassets.loaders import PythonLoader as PythonAssetsLoader
 
@@ -18,10 +17,7 @@ from flaskblog.errors.handlers import errors
 
 from flaskblog import assets
 from flaskblog.models import db
-#from flaskblog import settings
-
 from flaskblog.extensions import (
-#    cache,
     assets_env,
     debug_toolbar,
     login_manager,
@@ -29,6 +25,7 @@ from flaskblog.extensions import (
 )
 
 load_dotenv()
+
 
 def create_app(object_name):
     """
@@ -44,12 +41,12 @@ def create_app(object_name):
 
     app = Flask(__name__)
 
-    #app.config.from_pyfile('settings.py')
-    app.config.from_object(object_name)
-
-    # initialize the cache
-    cache = Cache(app, config={"CACHE_TYPE": app.config.get('CACHE_TYPE')})
-    cache.init_app(app)
+    if app.config.get('ENV') == 'production':
+        app.config.from_object('flaskblog.settings.ProdConfig')
+    elif app.config.get('ENV') == 'test':
+        app.config.from_object('flaskblog.settings.TestConfig')
+    else:
+        app.config.from_object('flaskblog.settings.DevConfig')
 
     # initialize the debug tool bar
     debug_toolbar.init_app(app)
@@ -72,7 +69,7 @@ def create_app(object_name):
     app.register_blueprint(posts)
     app.register_blueprint(errors)
 
-    #init mailserver
+    # init mailserver
 
     mail.init_app(app)
 
